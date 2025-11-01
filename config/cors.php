@@ -8,10 +8,11 @@ return [
     // Cho phép tất cả phương thức HTTP
     'allowed_methods' => ['*'],
 
-    // FE đang chạy ở http://localhost:5173
+    // FE đang chạy ở localhost và Netlify
     'allowed_origins' => [
         'http://localhost:5173',
-        'http://127.0.0.1:5173', // thêm luôn để chắc ăn
+        'http://127.0.0.1:5173',
+        'https://mngan-fe.netlify.app', // 👈 thêm domain FE chính thức
     ],
 
     'allowed_origins_patterns' => [],
