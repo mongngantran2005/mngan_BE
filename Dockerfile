@@ -19,10 +19,15 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
     && mv composer.phar /usr/local/bin/composer \
     && composer install --no-dev --optimize-autoloader
 
+# Thiết lập Apache trỏ vào thư mục public (Laravel)
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf \
+    && sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf \
+    && a2enmod rewrite
+
 # Phân quyền cho storage và bootstrap/cache (để tránh lỗi permission)
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Expose port 80 cho Apache (Render sẽ dùng cổng này)
+# Mở port 80 cho Render
 EXPOSE 80
 
 # Chạy Apache server khi container khởi động
