@@ -17,7 +17,7 @@ WORKDIR /var/www/html
 # Cài đặt Composer và các package cần thiết của Laravel
 RUN curl -sS https://getcomposer.org/installer | php -- \
     && mv composer.phar /usr/local/bin/composer \
-    && composer install --no-dev --optimize-autoloader \
+    && composer install --no-dev --optimize-autoloader
 
 # Phân quyền cho storage và bootstrap/cache (để tránh lỗi permission)
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
